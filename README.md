@@ -72,6 +72,7 @@ As you've seen, the Aloha protocol has a very low throughput, because there are 
 
 #### Todo
 
+- [ ] Make a copy of the `aloha.py` file and rename it to `slotted_aloha.py`. Use the new file for your implementation.
 - [ ] Implement slotted Aloha in the `user` function. The change is very simple: only a single line of code needs to be changed. Instead of generating exponential interarrival times, can you generate a discrete number of time slots to wait before sending the next packet?
 - [ ] Answer the question in the `Questions.md` file.
 
