@@ -62,7 +62,7 @@ The method `Channel.send_packet` has the following structure:
 
 *Your answer here*
 
-### How do you interpret the result of the `numpy.random.exponential` function for generating packet arrivals? (1 point)
+#### How do you interpret the result of the `numpy.random.exponential` function for generating packet arrivals? (1 point)
 
 *Your answer here*
 
