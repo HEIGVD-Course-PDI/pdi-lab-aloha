@@ -89,7 +89,7 @@ As you've seen, the Aloha protocol has a very low throughput, because there are 
 Checklist
 ---------
 
-The last commit before the deadline we be considered as your solution. Make sure that you've completed the following tasks:
+The last commit before the deadline will be considered as your solution. Make sure that you've completed the following tasks:
 
 - [ ] Answer all questions in the `Questions.md` file.
 - [ ] The Aloha model in `models/aloha.py` is complete and runs without errors.
