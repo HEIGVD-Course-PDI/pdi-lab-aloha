@@ -93,10 +93,10 @@ Final checklist
 The last commit before the deadline will be considered as your solution. Make sure that you've completed the following tasks:
 
 - [ ] Answer all questions in the `Questions.md` file.
-- [ ] The Aloha model in `models/aloha.py` is complete and runs without errors.
-- [ ] You provide a file `models/slotted_aloha.py` that implements the slotted Aloha model. It runs without errors.
+- [ ] The Aloha user model in `models/aloha_user.py` is complete and runs without errors.
+- [ ] You provide a file `models/slotted_aloha_user.py` that implements the slotted Aloha user model. It runs without errors.
 - [ ] You have the following plot files: 
-  - `throughput.png`,
-  - `channel_occupation.png`,
+  - `aloha_throughput.png`,
+  - `aloha_channel_occupation.png`,
   - `slotted_aloha_throughput.png`, and 
   - `slotted_aloha_channel_occupation.png`.
