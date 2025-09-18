@@ -20,18 +20,16 @@ This protocol is very simple. But as we will see, it has some serious performanc
 1 - Understand the simulation model
 -----------------------------------
 
-The file `models/aloha.py` contains the simulation model for the Aloha protocol. It defines the following elements:
+File `./models/aloha_user.py`
+  : This file contains an (incomplete) implementation of a  `Class User` class that generates packets and sends them to the channel. For each packet, it sends it to the channel and waits for the transmission to complete before sending the next packet. 
+  : You will need to complete this method later.
 
-Function `user(env, channel, packets_per_second, packet_duration)`
-  : This is an (incomplete) implementation of a user that generates packets at a given rate. For each packet, it sends it to the channel and waits for the transmission to complete before sending the next packet.
-  : You will need to complete this function later.
-
-Class `Channel`
-  : This class represents the Aloha transmission channel. A user can send packets to the channel using its `send_packet` method. The channel keeps statistics about successful transmissions and collisions. It also measures when the channel is occupied or idle.
+File `./models/aloha_channel.py`
+  : This file contains the `Class Channel` that represents the Aloha transmission channel. A user can send packets to the channel using its `send_packet` method. The channel keeps statistics about successful transmissions and collisions. It also measures when the channel is occupied or idle.
   : You do not need to modify this class.
 
-The `main` function
-  : This function sets up the simulation environment, creates the channel, and starts all user processes. It also runs the simulation for a given duration and prints the statistics at the end.
+File `/main_aloha.py`
+  : The `main` function in this file sets up the simulation environment, creates the channel, and starts all user processes. It runs the simulation for a given duration and prints the statistics at the end.
   : You do not need to modify this function.
 
 #### Todo
@@ -43,12 +41,12 @@ The `main` function
 2 - Implement the packet generation
 -----------------------------------
 
-The `user` function should generate packets at a given rate, but it is currently incomplete. You need to implement the simulation model to generate packets.
+The `User.generate_packets` method should generate packets at a given rate, but it is currently incomplete. You need to implement the simulation model to generate packets.
 
 #### Todo
 
 - [ ] The Python function `numpy.random.exponential` from the Numpy package generates values from an exponential distribution. Test this function with different values of $\lambda$. Do the generated values match your expectations?
-- [ ] Implement the packet generation in the `user` function. Generate packets with expontential interarrival times. The mean is given by the `packets_per_second` parameter. Use a fixed packet duration given by the constant `PACKET_DURATION` as the packet service time.
+- [ ] Implement the packet generation in the `User.generate_packets` method in the file `./models/user.py`. Generate packets with exponential interarrival times. The mean is given by the `packets_per_second` parameter.
 - [ ] Run the simulation for different number of users and observe the printed statistics. Do the statistics match your expectations? In particular, check the number of generated packets and the total utilization of the channel.
 - [ ] Answer the question in the `Questions.md` file.
 
@@ -60,20 +58,23 @@ After a simulation, observe the channel utilization, number of collisions and th
 
 #### Todo
 
-- [ ] Run the simulation for different values of `NUM_USERS`. For which utilization does the throughput reach its maximum? What is the maximum throughput?
-- [ ] Plot the throughput as a function of the utilization: the script `optimize_aloha.py` runs the simulation for different values of `NUM_USERS` and collects the statistics. It then plots the throughput as well as the channel utilization. Examine the plots.
+- [ ] Run the simulation for different values of `NUM_USERS`. For which utilization does the throughput (i.e., time in successful transmissions) reach its maximum? What is the maximum throughput?
+- [ ] Plot the throughput as a function of the utilization: the script `./optimize_aloha.py` runs the simulation for different values of `NUM_USERS` and collects the statistics. It then plots the throughput as well as the channel utilization. Examine the plot files (`./aloha_throughput.png` and `./aloha_channel_occupation.png`).
 - [ ] Answer the question in the `Questions.md` file.
 
 
 4 - Implement slotted Aloha
 ---------------------------
 
-As you've seen, the Aloha protocol has a very low throughput, because there are many collisions. There is a variant of Aloha called slotted Aloha that improves the throughput. The idea that the time is divided into slots of a fixed duration equal to the packet transmission time. A transmission can only start at the beginning of a slot at it will fill the entire slot. This reduces the chance of collisions: in normal Aloha, a collision occurs even if two transmissions overlap by a single bit. In slotted Aloha, they overlap completely or not at all. This reduces the chance of collisions and increases the throughput. See the Wikipedia article on [Slotted Aloha](https://en.wikipedia.org/wiki/Slotted_Aloha) for more details.
+As you've seen, the Aloha protocol has a very low throughput, because there are many collisions. There is a variant of Aloha called *slotted Aloha* that improves the throughput. The idea that the time is divided into slots of a fixed duration equal to the packet transmission time. A transmission can only start at the beginning of a slot at and it will fill the entire slot. This reduces the chance of collisions: in normal Aloha, a collision occurs even if two transmissions overlap by a single bit. In slotted Aloha, they overlap completely or not at all. This reduces the chance of collisions and increases the throughput. See the Wikipedia article on [Slotted Aloha](https://en.wikipedia.org/wiki/Slotted_Aloha) for more details.
 
 #### Todo
 
-- [ ] Make a copy of the `aloha.py` file and rename it to `slotted_aloha.py`. Use the new file for your implementation.
-- [ ] Implement slotted Aloha in the `user` function. The change is very simple: only a single line of code needs to be changed. Instead of generating exponential interarrival times, can you generate a discrete number of time slots to wait before sending the next packet?
+- [ ] Make a copy of the `./models/aloha_user.py` file and rename it to `./models/slotted_aloha_user.py`. Use the new file for your implementation.
+- [ ] Implement slotted Aloha in the `generate_packets` method. The change is very simple: only a single line of code needs to be changed. Instead of generating exponential interarrival times, can you generate a discrete number of time slots to wait before sending the next packet? Each time slot has a duration equal to the packet duration.
+- [ ] Make a copy of the `./main_aloha.py` file and rename it to `./main_slotted_aloha.py`. Modify the new file to use the slotted Aloha user class instead of the normal Aloha user class.
+- [ ] Run several simulations using the `./main_slotted_aloha.py` script with different numbers of users. Are the number of generated packets correct?
+- [ ] Make a copy of the `./optimize_aloha.py` file and rename it to `./optimize_slotted_aloha.py`. Modify the new file to use the `./main_slotted_aloha.py` script instead of the normal Aloha script and plot the results to different files.
 - [ ] Answer the question in the `Questions.md` file.
 
 
@@ -86,8 +87,8 @@ As you've seen, the Aloha protocol has a very low throughput, because there are 
 - [ ] Using the `optimize_aloha.py` script, run the simulation for slotted Aloha and observe the throughput. How does it compare to the normal Aloha protocol? Does it reach a higher maximum throughput? At which utilization does it reach this maximum throughput?
 - [ ] Answer the question in the `Questions.md` file.
 
-Checklist
----------
+Final checklist
+---------------
 
 The last commit before the deadline will be considered as your solution. Make sure that you've completed the following tasks:
 

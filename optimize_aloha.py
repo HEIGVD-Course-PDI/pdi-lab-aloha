@@ -1,6 +1,6 @@
 """Script to run the ALOHA simulation for different loads and plot the throughput vs. utilization."""
 
-from models.aloha import main as aloha
+from main_aloha import main as aloha
 from matplotlib import pyplot as plt
 
 ARRIVAL_RATE_PER_USER = 0.001 # Packets per second per user
