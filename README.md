@@ -20,21 +20,19 @@ This protocol is very simple. But as we will see, it has some serious performanc
 1 - Understand the simulation model
 -----------------------------------
 
-File `./models/aloha_user.py`
-  : This file contains an (incomplete) implementation of a  `Class User` class that generates packets and sends them to the channel. For each packet, it sends it to the channel and waits for the transmission to complete before sending the next packet. 
-  : You will need to complete this method later.
-
-File `./models/aloha_channel.py`
-  : This file contains the `Class Channel` that represents the Aloha transmission channel. A user can send packets to the channel using its `send_packet` method. The channel keeps statistics about successful transmissions and collisions. It also measures when the channel is occupied or idle.
-  : You do not need to modify this class.
-
-File `/main_aloha.py`
-  : The `main` function in this file sets up the simulation environment, creates the channel, and starts all user processes. It runs the simulation for a given duration and prints the statistics at the end.
-  : You do not need to modify this function.
+- **File `./models/aloha_user.py`**
+  - This file contains an (incomplete) implementation of a  `Class User` class that generates packets and sends them to the channel. For each packet, it sends it to the channel and waits for the transmission to complete before sending the next packet. 
+  - You will need to complete this method later.
+- **File `./models/aloha_channel.py`**
+  - This file contains the `Class Channel` that represents the Aloha transmission channel. A user can send packets to the channel using its `send_packet` method. The channel keeps statistics about successful transmissions and collisions. It also measures when the channel is occupied or idle.
+  - You do not need to modify this class.
+- **File `/main_aloha.py`**
+  - The `main` function in this file sets up the simulation environment, creates the channel, and starts all user processes. It runs the simulation for a given duration and prints the statistics at the end.
+  - You do not need to modify this function.
 
 #### Todo
 
-- [ ] Read the code in `models/aloha.py` and understand how the simulation works. Try to understand the `Channel.send_packet` method.
+- [ ] Read the code in `models/aloha_channel.py` and understand how the simulation works. Try to understand the `Channel.send_packet` method.
 - [ ] Answer the questions in the `Questions.md` file.
 
 
